@@ -49,11 +49,11 @@ public class ForecastAdapter extends ArrayAdapter<Weather> {
         if(convertView == null)
             convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item, parent, false);
 
-        TextView weather_textView = convertView.findViewById(R.id.item_weather);
-        TextView date_textView = convertView.findViewById(R.id.item_date);
-        TextView description_textView = convertView.findViewById(R.id.item_description);
-        TextView temp_textView = convertView.findViewById(R.id.item_temperature);
-        ImageView weather_imageView = convertView.findViewById(R.id.item_image);
+        TextView weather_textView = (TextView)convertView.findViewById(R.id.item_weather);
+        TextView date_textView = (TextView) convertView.findViewById(R.id.item_date);
+        TextView description_textView = (TextView) convertView.findViewById(R.id.item_description);
+        TextView temp_textView = (TextView) convertView.findViewById(R.id.item_temperature);
+        ImageView weather_imageView = (ImageView) convertView.findViewById(R.id.item_image);
 
         description_textView.setText(currentWeather.getDescription());
         weather_textView.setText(currentWeather.getWeather());

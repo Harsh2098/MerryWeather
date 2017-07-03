@@ -4,25 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.hmproductions.merryweather.R;
-import com.hmproductions.merryweather.data.Weather;
 import com.hmproductions.merryweather.connectors.WeatherLoader;
+import com.hmproductions.merryweather.data.Weather;
 import com.hmproductions.merryweather.utils.AnimationUtils;
 import com.hmproductions.merryweather.utils.WeatherUtils;
 
@@ -31,29 +34,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Weather>> {
 
+    public static final String DEGREE = "\u00B0";
+    static final String CITY_KEY = "city-key";
     // Defining constants
     private static final String WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private static final String WEATHER_API_APP_ID = "&appid=8ab04133be67ec8fda5053218b3fc48d";
-    public static final String DEGREE = "\u00B0";
     private static final int LOADER_ID = 101;
     private static final String LOG_TAG = ":::";
-    static final String CITY_KEY = "city-key";
-
+    // Variables
+    public static String mCity;
+    public static List<Weather> mData = new ArrayList<>();
     RelativeLayout main_layout, connection_error_layout;
-
-    EditText city_editText;
+    PlaceAutocompleteFragment autocompleteFragment;
     ImageView weather_imageView;
     TextView city_textView, weather_textView, description_textView, date_textView;
     TextView minTemp_textView, maxTemp_textView, humidity_textView;
     TextView windSpeed_textView, windDegree_textView;
     Button searchButton;
     ProgressBar progressBar;
-
-    // Variables
-    public static String mCity;
     private boolean mConnection;
-
-    public static List<Weather> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +60,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         BindViews();
-
         SearchButtonClickListener();
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                mCity = (String) place.getName();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Toast.makeText(MainActivity.this,"Please enter a valid name", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Checks if Internet Connectivity is Available and sets mConnection to true otherwise false
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -86,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Binding all the views
         main_layout = (RelativeLayout)findViewById(R.id.main_layout);
         connection_error_layout = (RelativeLayout)findViewById(R.id.connection_error_layout);
+        autocompleteFragment = (PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        city_editText = (EditText)findViewById(R.id.city_editText);
         weather_imageView = (ImageView)findViewById(R.id.weather_imageView);
         searchButton = (Button)findViewById(R.id.search_button);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
@@ -112,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 AnimationUtils.AnimateCircularReveal(view);
 
-                mCity = city_editText.getText().toString();
                 if(mCity.isEmpty() || mCity.equals(""))
                     Toast.makeText(MainActivity.this,"Please enter city name", Toast.LENGTH_SHORT).show();
                 else

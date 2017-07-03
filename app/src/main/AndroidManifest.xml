@@ -26,6 +26,11 @@
             android:name=".ui.ForecastActivity"
             android:parentActivityName=".ui.MainActivity"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD8aNvNoPT1EPCAeaUaDqb8M98aRJIpzIo" />
+
+
     </application>
 
 </manifest>

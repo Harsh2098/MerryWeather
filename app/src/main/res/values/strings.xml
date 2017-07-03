@@ -12,4 +12,5 @@
     <string name="internet_connection_unavailable">Internet Connection Unavailable</string>
     <string name="internet_connection_is_required">Internet connection is required for fetching Weather Forecast. Please check your connection and restart the app.</string>
     <string name="eg_singapore">Eg. Singapore</string>
+    <string name="humidity">Humidity</string>
 </resources>
