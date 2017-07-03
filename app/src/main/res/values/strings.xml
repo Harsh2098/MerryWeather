@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Merry Weather</string>
+    <string name="search">SEARCH</string>
+    <string name="weather_image">weather_image</string>
+    <string name="city">City</string>
+    <string name="weather">Weather</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="temperature">Temperature</string>
+    <string name="_5_day_forecast">5 Day Forecast</string>
+
+    <string name="internet_connection_unavailable">Internet Connection Unavailable</string>
+    <string name="internet_connection_is_required">Internet connection is required for fetching Weather Forecast. Please check your connection and restart the app.</string>
+    <string name="eg_singapore">Eg. Singapore</string>
+</resources>

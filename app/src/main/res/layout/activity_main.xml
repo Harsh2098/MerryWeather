@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="6dp">
+
+    <RelativeLayout
+
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/weather_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather"
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/city_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:gravity="end"
+            android:text="@string/city"
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/description_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weather_textView"
+            android:layout_marginTop="10dp"
+            android:text="@string/description"
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/city_textView"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/description_textView"
+            android:gravity="end"
+            android:text="@string/date"
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/weather_imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/description_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button2"
+            android:contentDescription="@string/weather_image" />
+
+        <TextView
+            android:id="@+id/minTemp_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/weather_imageView"
+            android:layout_marginTop="15dp"
+            android:text="Min. Temp."
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/maxTemp_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/weather_imageView"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/minTemp_textView"
+            android:gravity="end"
+            android:text="Max. Temp."
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/windSpeed_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/minTemp_textView"
+            android:layout_marginTop="30dp"
+            android:text="Wind Speed"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/windDegree_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/maxTemp_textView"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@id/windSpeed_textView"
+            android:gravity="end"
+            android:text="Wind Degree"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/humidity_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/windSpeed_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Humidity"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/city_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/search_button"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:hint="@string/eg_singapore"
+            android:maxLength="20"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/search" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/connection_error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="120dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/connection_error_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/internet_connection_unavailable"
+            android:src="@raw/connection_error" />
+
+        <TextView
+            android:id="@+id/connection_unavailable_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/connection_error_image"
+            android:layout_centerInParent="true"
+            android:text="@string/internet_connection_unavailable"
+            android:textColor="@android:color/background_dark"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/connection_unavailable_textView"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/internet_connection_is_required"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>
